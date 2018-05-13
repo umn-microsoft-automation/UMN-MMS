@@ -76,7 +76,7 @@ Import-Module UMN-Google
     }
 #endregion
 $longLat = (Get-LatLong -city "Minneapolis" -state "MN" -geoApiKey $geoApiKey)[0].location
-$longLatFormatted = "($($longLat.lat),$($longLat.lng))"
+$longLatFormatted = "$($longLat.lat),$($longLat.lng)"
 foreach ($n in (-10 .. -1)){
     $url = "https://api.forecast.io/forecast/$darkSkyAPIkey/$longLatFormatted,$(([Math]::Floor((Get-Date (((Get-Date).AddDays($n)).toUniversalTime()) -UFormat +%s))))"
     $weather = Invoke-WebRequest $url | ConvertFrom-Json
